@@ -20,6 +20,7 @@
     ];
     var app = angular.module('Shopping',[]);
     app.controller('ShoppingCtrl',shoppingListController)
+    .controller('ShoppingCtrl2',shoppingListController2)
     .service('ShoppingListService', ShoppingListService);
 
 //    shoppingListController.$inject = ['$scope'];
@@ -27,11 +28,18 @@
     function shoppingListController(ShoppingListService) {
         var shopItem = this;
         shopItem.items = ShoppingListService.getItems();
-        shopItem.boughtItems = ShoppingListService.getBoughtItems();
+        //shopItem.boughtItems = ShoppingListService.getBoughtItems();
         shopItem.bought = function (itemIndex) {
                         ShoppingListService.removeItem(itemIndex);
         };
     }
+
+    shoppingListController2.$inject = ['ShoppingListService'];
+    function shoppingListController2(ShoppingListService) {
+        var shopList = this;
+        shopList.boughtItems = ShoppingListService.getBoughtItems();
+    }
+
 
     function ShoppingListService() {
       var service = this;
