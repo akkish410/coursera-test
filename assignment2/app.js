@@ -10,6 +10,10 @@
         quantity: "200"
       },
       {
+        name: "Peanuts",
+        quantity: "20"
+      },
+      {
         name: "Cookies",
         quantity: "300"
       },
