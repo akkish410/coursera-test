@@ -20,6 +20,7 @@
 
     function menuctrl(MenuCategoriesService) {
       var menu = this;
+      menu.content = [];
       menu.itemName = "";
       menu.getItems = function (itemName) {
           menu.content = [];
@@ -57,20 +58,19 @@
 
     }
 
+    MenuCategoriesService.$inject = ['$http', 'ApiBasePath'];
+    function MenuCategoriesService($http, ApiBasePath) {
 
-MenuCategoriesService.$inject = ['$http', 'ApiBasePath'];
-function MenuCategoriesService($http, ApiBasePath) {
+      var service = this;
+      var found =[];
+      service.getMenuItems = function () {
+        var response = $http({
+          method: "GET",
+          url: (ApiBasePath + "/menu_items.json")
+        });
+        return response;
+      };
 
-  var service = this;
-  var found =[];
-  service.getMenuItems = function () {
-    var response = $http({
-      method: "GET",
-      url: (ApiBasePath + "/menu_items.json")
-    });
-    return response;
-  };
-
-}
+    }
 
 })();
