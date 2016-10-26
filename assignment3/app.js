@@ -1,8 +1,8 @@
 (function(){
     'use strict';
     var app = angular.module('restaurant',[]);
-    app.controller('menuctrl',menuctrl)
-    .service('MenuCategoriesService', MenuCategoriesService)
+    app.controller('NarrowItDownController',NarrowItDownController)
+    .service('MenuSearchService', MenuSearchService)
     .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
     .directive('foundItems', FoundItems);
 
@@ -16,9 +16,9 @@
       return ddo;
     }
 
-    menuctrl.$inject = ['MenuCategoriesService'];
+    NarrowItDownController.$inject = ['MenuSearchService'];
 
-    function menuctrl(MenuCategoriesService) {
+    function NarrowItDownController(MenuSearchService) {
       var menu = this;
       menu.content = [];
       menu.itemName = "";
@@ -26,7 +26,7 @@
           menu.content = [];
           menu.errorMessage = "";
           if(menu.itemName) {
-              var promise = MenuCategoriesService.getMenuItems();
+              var promise = MenuSearchService.getMenuItems();
               promise.then(function (response) {
                   var categories = response.data.menu_items;
                 //   console.log(categories);
@@ -58,8 +58,8 @@
 
     }
 
-    MenuCategoriesService.$inject = ['$http', 'ApiBasePath'];
-    function MenuCategoriesService($http, ApiBasePath) {
+    MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+    function MenuSearchService($http, ApiBasePath) {
 
       var service = this;
       var found =[];
