@@ -3,7 +3,7 @@
     var app = angular.module('restaurant',[]);
     app.controller('menuctrl',menuctrl)
     .service('MenuCategoriesService', MenuCategoriesService)
-    .constant('ApiBasePath', "http://davids-restaurant.herokuapp.com")
+    .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
     .directive('foundItems', FoundItems);
 
 
