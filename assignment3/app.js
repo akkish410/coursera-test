@@ -23,11 +23,11 @@
       menu.content = [];
       menu.itemName = "";
       menu.getItems = function (itemName) {
-          menu.content = [];
           menu.errorMessage = "";
           if(menu.itemName) {
               var promise = MenuSearchService.getMenuItems();
               promise.then(function (response) {
+                  menu.content = [];
                   var categories = response.data.menu_items;
                 //   console.log(categories);
                 //   console.log(itemName);
@@ -48,6 +48,7 @@
                 });
           }
           else {
+              menu.content = [];
               menu.errorMessage = "Nothing found!";
           }
       }
